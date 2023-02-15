@@ -1,5 +1,9 @@
 Vagrant.configure("2") do |config|
     config.vm.box = "generic/arch"
+    config.vm.provider "virtualbox" do |v|
+        v.memory = 1024
+        v.cpus = 1
+    end
     config.vm.synced_folder ".", "/home/vagrant/dev"
     config.vm.network "forwarded_port", guest: 2375, host: 2375
     config.vm.provision "shell", reboot: true, inline: <<-SHELL
